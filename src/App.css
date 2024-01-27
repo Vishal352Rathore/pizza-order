@@ -1,5 +1,7 @@
 .App {
+  margin: 0;
   text-align: center;
+  background-color:rgb(255, 255, 255);
 }
 
 .App-logo {
@@ -35,4 +37,73 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.order-stages {
+
+  margin: 40px 200px !important;
+  border: none;
+}
+
+ .col {
+  height: 350px;
+  overflow: auto;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+.cards-design {
+  height: 120px;
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+
+}
+
+.timer-container{
+  justify-content: center;
+}
+
+.Main-Section{
+  margin: 20px 150px;
+  /* border: 1px solid #000000; */
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+td, th {
+  border: 1px solid #000000;
+  text-align: left;
+  padding: 8px;
+}
+
+
+.outer-form {
+  margin-top: 20px;
+display: flex;
+justify-content: center ;
+gap: 150px;
+
+}
+.form-level {
+  display: inline-grid;
+  font-weight: bold;
+}
+
+label {
+  padding: 5px;
+}
+
+ input {
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: rgb(37, 102, 224);
+  color: white;
+  border-radius: 5px;
 }
