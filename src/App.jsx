@@ -130,7 +130,7 @@ function App() {
 
                       <div className="timer-container">
                         <div >
-                          <Timer onTimerComplete = {lateOrderAlert} />
+                          <Timer onTimerComplete = {setMinutes} />
                         </div>
                       </div>
 
@@ -158,7 +158,7 @@ function App() {
 
                       <div className="timer-container">
                         <div >
-                          <Timer onTimerComplete = {lateOrderAlert} />
+                          <Timer onTimerComplete = {setMinutes} />
                         </div>
                       </div>
 
@@ -186,7 +186,7 @@ function App() {
 
                       <div className="timer-container">
                         <div >
-                          <Timer onTimerComplete={lateOrderAlert} />
+                          <Timer onTimerComplete={setMinutes} />
                         </div>
                       </div>
 
