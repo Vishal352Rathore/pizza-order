@@ -1,11 +1,12 @@
 import './App.css';
 import Timer from './Timer';
-import { useState  } from 'react';
-var id = 1 ;
+import { useState ,useEffect } from 'react';
 
 function App() {
 
   const [CompleteOrder, setCompleteOrder] = useState(0);
+
+  const [orderId ,setOrderId] = useState(1);
 
   const [orders, setOrders] = useState([]);
 
@@ -18,7 +19,6 @@ function App() {
     size: '',
     base: ''
   });
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,13 +33,18 @@ function App() {
       alert("We are not taking orders now");
     }
     else {
-      console.log("id1" + id); 
-      setFormData((prevFormData) => ({ ...prevFormData, orderId: id }));
-      id = id + 1 ;
-            console.log("id2" + id); 
+    
+      setOrderId((orderId) => orderId + 1)
+     
       setOrders(orders => ([...orders, formData]));
     }
   };
+
+  useEffect(() => {
+
+    setFormData((prevFormData) => ({ ...prevFormData, orderId: orderId }));
+
+  }, [orderId , setFormData ]);
 
 
   const stageChange = (e, id) => {
@@ -117,15 +122,15 @@ function App() {
           {
             orders.map((data, index) => {
               return (
-                <div >
+                <div key={index} >
                   {data.stage === "Order Placed" ?
-                    <div key={index} className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }} >
+                    <div className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }} >
 
                       <p>Order No. {data.orderId}</p>
 
                       <div className="timer-container">
                         <div >
-                          <Timer onTimerComplete={setMinutes} />
+                          <Timer onTimerComplete = {lateOrderAlert} />
                         </div>
                       </div>
 
@@ -145,15 +150,15 @@ function App() {
           {
             orders.map((data, index) => {
               return (
-                <div>
+                <div key={index}>
                   {data.stage === "Order In Making" ?
-                    <div key={index} className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }}>
+                    <div  className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }}>
 
                       <p>Order No. {data.orderId}</p>
 
                       <div className="timer-container">
                         <div >
-                          <Timer minutesCallback={setMinutes} />
+                          <Timer onTimerComplete = {lateOrderAlert} />
                         </div>
                       </div>
 
@@ -173,15 +178,15 @@ function App() {
           {
             orders.map((data, index) => {
               return (
-                <div >
+                <div key={index}>
                   {data.stage === "Order Ready" ?
-                    <div key={index} className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }}>
+                    <div  className='cards-design' style={{ backgroundColor: minutes >= 1 ? 'red' : 'white' }}>
 
                       <p>Order No. {data.orderId}</p>
 
                       <div className="timer-container">
                         <div >
-                          <Timer minutesCallback={setMinutes} />
+                          <Timer onTimerComplete={lateOrderAlert} />
                         </div>
                       </div>
 
@@ -201,11 +206,11 @@ function App() {
           {
             orders.map((data, index) => {
               return (
-                <div>
+                <div key={index}>
                   {
 
                     data.stage === "Order Picked" ?
-                      <div key={index} className='cards-design'>
+                      <div  className='cards-design'>
 
                         <p>Order No. {data.orderId}</p>
                         <p> picked</p>

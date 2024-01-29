@@ -13,16 +13,13 @@ function Timer({ onTimerComplete }) {
     const { minutes, seconds } = formatTime(timer);
 
 
-        console.log('onTimerComplete:', typeof onTimerComplete, onTimerComplete);
-        if (typeof onTimerComplete === 'function') {
-            onTimerComplete(formatTime(timer).minutes);
-        }
- 
-
     useEffect(() => {
         startTimer();
+        if (typeof onTimerComplete === 'function') {
+            onTimerComplete( formatTime(timer).minutes);
+        }
         return stopTimer;
-    }, []);
+    }, [timer , onTimerComplete]);
 
     const startTimer = () => {
         timeInterval.current = setInterval(() => {
